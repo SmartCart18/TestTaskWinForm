@@ -13,13 +13,13 @@ using static System.Net.Mime.MediaTypeNames;
 namespace TestTaskWinForm
 {
     public partial class UserIdentification : Form
-
-
-
     {
+
         public UserIdentification()
         {
+            var UserDateInfo = new Document();
             InitializeComponent();
+
         }
 
         private void UserIdentification_Load(object sender, EventArgs e)
@@ -36,6 +36,16 @@ namespace TestTaskWinForm
                 if (foundFile != null)
                 {
                     /*Console.WriteLine($"Файл найден: {foundFile}");*/
+                    try
+                    {
+                        string[] lines = File.ReadAllLines(baseDir + "\\employeeDocument.txt");
+                        /* Console.WriteLine($"Прочитано строк: {lines.Length}");
+                         foreach (var line in lines) Console.WriteLine(line); */
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine("Ошибка чтения файла: " + ex.Message);
+                    }
                 }
                 else
                 {
@@ -48,14 +58,8 @@ namespace TestTaskWinForm
                 /*Console.WriteLine("Нет доступа к некоторым папкам.");*/
             }
 
-            try
-            {
-                string[] lines = File.ReadAllLines(baseDir + "\\employeeDocument.txt");
-               /* Console.WriteLine($"Прочитано строк: {lines.Length}");
-                foreach (var line in lines) Console.WriteLine(line); */
-            }
-            catch (Exception ex) { Console.WriteLine("Ошибка чтения файла: " + ex.Message); }
-            }
+
+        }
         private void btnOpenEmployeeForm(object sender, EventArgs e)
         {
             OpenEmployeeForm();
