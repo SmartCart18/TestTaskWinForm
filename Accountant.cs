@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace TestTaskWinForm
 {
-    public partial class Form1 : Form
+    public partial class Accountant : Form
     {
-        public Form1()
+        public Accountant()
         {
             InitializeComponent();
+        }
+
+        private void Accountant_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
