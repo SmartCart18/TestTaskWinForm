@@ -35,13 +35,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.TypeDocument = new System.Windows.Forms.ComboBox();
             this.otherTypeDoc = new System.Windows.Forms.TextBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.QuantityDocument = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textReasonRequest = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuantityDocument)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRequestDoc
@@ -96,23 +96,23 @@
             this.otherTypeDoc.TabIndex = 4;
             this.otherTypeDoc.Visible = false;
             // 
-            // numericUpDown1
+            // QuantityDocument
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(40, 186);
-            this.numericUpDown1.Maximum = new decimal(new int[] {
+            this.QuantityDocument.Location = new System.Drawing.Point(40, 186);
+            this.QuantityDocument.Maximum = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.QuantityDocument.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDown1.TabIndex = 5;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.QuantityDocument.Name = "QuantityDocument";
+            this.QuantityDocument.Size = new System.Drawing.Size(120, 20);
+            this.QuantityDocument.TabIndex = 5;
+            this.QuantityDocument.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -145,24 +145,24 @@
             this.label4.TabIndex = 8;
             this.label4.Text = "Причина запроса";
             // 
-            // textBox1
+            // textReasonRequest
             // 
-            this.textBox1.Location = new System.Drawing.Point(40, 240);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 67);
-            this.textBox1.TabIndex = 9;
+            this.textReasonRequest.Location = new System.Drawing.Point(40, 240);
+            this.textReasonRequest.Multiline = true;
+            this.textReasonRequest.Name = "textReasonRequest";
+            this.textReasonRequest.Size = new System.Drawing.Size(288, 67);
+            this.textReasonRequest.TabIndex = 9;
             // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 458);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textReasonRequest);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.QuantityDocument);
             this.Controls.Add(this.otherTypeDoc);
             this.Controls.Add(this.TypeDocument);
             this.Controls.Add(this.label1);
@@ -172,7 +172,7 @@
             this.Text = "Сотрудник";
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.QuantityDocument)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,8 +188,8 @@
         private System.Windows.Forms.TextBox otherTypeDoc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown QuantityDocument;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textReasonRequest;
     }
 }

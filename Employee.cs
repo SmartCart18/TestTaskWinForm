@@ -26,10 +26,18 @@ namespace TestTaskWinForm
 
         private void btnRequestDoc_Click(object sender, EventArgs e)
         {
-            SaveAndBack();
+            ExNullInName();
+            if(TypeDocument.Text == "Другое")
+            {
+                var userDocument = new Document(textFullName.Text, otherTypeDoc.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
+            }
+            else
+            {
+                var userDocument = new Document(textFullName.Text, TypeDocument.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
+            }
 
         }
-        private void SaveAndBack()
+        private void ExNullInName()
         {
             string fullName = textFullName.Text;
 
@@ -40,7 +48,7 @@ namespace TestTaskWinForm
                 return;
             }
 
-            errorProvider.SetError(textFullName, ""); // очищаем сообщение об ошибке
+            errorProvider.SetError(textFullName, "");
         }
 
         private void TypeDocument_SelectedIndexChanged(object sender, EventArgs e)
