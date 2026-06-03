@@ -52,6 +52,7 @@
     <Compile Include="Accountant.Designer.cs">
       <DependentUpon>Accountant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Document.cs" />
     <Compile Include="Employee.cs">
       <SubType>Form</SubType>
     </Compile>

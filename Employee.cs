@@ -31,9 +31,9 @@ namespace TestTaskWinForm
         }
         private void SaveAndBack()
         {
-            string fio = textFullName.Text;
+            string fullName = textFullName.Text;
 
-            if (!FullNameValidation.IsValid(fio))
+            if (!FullNameValidation.IsValid(fullName))
             {
                 errorProvider.SetError(textFullName, "Введите ФИО: Фамилия Имя [Отчество], 2–3 части, только буквы и дефисы/апострофы.");
                 textFullName.Focus();
