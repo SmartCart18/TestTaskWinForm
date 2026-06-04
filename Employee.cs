@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,64 +16,52 @@ namespace TestTaskWinForm
 {
     public partial class Employee : Form
     {
+        string baseDir = AppContext.BaseDirectory;
+        string fileName = "employeeDocument.txt";
+        Document userDocument = new Document();
+        List<string> list = new List<string>();
+
         public Employee()
         {
             InitializeComponent();
         }
 
-        string baseDir = AppContext.BaseDirectory;
-        string fileName = "employeeDocument.txt";
-        Document userDocument = new Document();
-
         private void Employee_Load(object sender, EventArgs e)
         {
+            list = FileBase.LisenFiles(baseDir, fileName);
+        }
 
-
-            try
+        private void btnRequestDoc_Click(object sender, EventArgs e) //обработка кнопки по отправки запроса справки
+        {
+            ExNullInName(); 
+            ExNullInReasonRec();
+            ExNullInTypeDoc();
+            ExNullInOtherReasonRec();
+            if (textReasonRequest.Text != "" || textTypeDocument.Text != "")
             {
-                // Ищет точное совпадение
-                string foundFile = Directory.EnumerateFiles(baseDir, fileName, SearchOption.AllDirectories)
-                                            .FirstOrDefault();
-
-                if (foundFile != null)
+                if (textTypeDocument.Text == "Другое") // в зависимости от выбранного вида документа обрабатываются разные поля
                 {
-                    try
-                    {
-                        string[] lines = File.ReadAllLines(baseDir + "\\employeeDocument.txt");
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Ошибка чтения файла: " + ex.Message);
-                    }
+                    userDocument.SetDocument(textFullName.Text, otherTypeDoc.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
                 }
                 else
                 {
-                    File.WriteAllText(baseDir + "\\employeeDocument.txt", "");
+                    userDocument.SetDocument(textFullName.Text, textTypeDocument.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
+                }
+
+                if (!list.Any(w => w.Contains(userDocument.ForСompareDocument())))
+                {
+                    FileBase.WritingToFile(baseDir, fileName, userDocument.GetDocument());     // запись в документ
+                    list = FileBase.LisenFiles(baseDir, fileName);
+                    MessageBox.Show("Данные успешно отправлены!", "Успех");
+                    otherTypeDoc.Text = "";
+                    QuantityDocument.Value = 1;
+                    textReasonRequest.Text = "";
+                    textTypeDocument.SelectedIndex = -1;
                 }
             }
-            catch (UnauthorizedAccessException)
-            {
-                /*Console.WriteLine("Нет доступа к некоторым папкам.");*/
-            }
         }
 
-        private void btnRequestDoc_Click(object sender, EventArgs e)
-        {
-            ExNullInName();
-            if(TypeDocument.Text == "Другое")
-            {
-                userDocument.SetDocument(textFullName.Text, otherTypeDoc.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
-
-            }
-            else
-            {
-                userDocument.SetDocument(textFullName.Text, TypeDocument.Text, (int)QuantityDocument.Value, textReasonRequest.Text, "Новый документ");
-                
-            }
-            string textToAppend = userDocument.GetDocument();
-            File.AppendAllText(baseDir + "\\employeeDocument.txt", textToAppend);
-        }
-        private void ExNullInName()
+        private void ExNullInName() // проверка на пустое поле ФИО
         {
             string fullName = textFullName.Text;
 
@@ -85,10 +74,48 @@ namespace TestTaskWinForm
 
             errorProvider.SetError(textFullName, "");
         }
+        private void ExNullInTypeDoc()
+        {
+            string fullName = textTypeDocument.Text;
+
+            if (textTypeDocument.Text =="")
+            {
+                errorTypeDocument.SetError(textTypeDocument, "Выберите вид справки.");
+                textTypeDocument.Focus();
+                return;
+            }
+            errorTypeDocument.SetError(textTypeDocument, "");
+        }
+        private void ExNullInReasonRec()
+        {
+            string fullName = textReasonRequest.Text;
+
+            if (textReasonRequest.Text == "")
+            {
+                errorReasonRequest.SetError(textReasonRequest, "Укажите причину запроса.");
+                textReasonRequest.Focus();
+                return;
+            }
+            errorReasonRequest.SetError(textReasonRequest, "");
+        }
+
+        private void ExNullInOtherReasonRec()
+        {
+            string fullName = otherTypeDoc.Text;
+
+            if (otherTypeDoc.Text == "")
+            {
+                errorOtherTypeDoc.SetError(otherTypeDoc, "Укажите другую причину запроса.");
+                otherTypeDoc.Focus();
+                return;
+            }
+            errorOtherTypeDoc.SetError(otherTypeDoc, "");
+        }
+
 
         private void TypeDocument_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(TypeDocument.Text != "Другое")
+            if(textTypeDocument.Text != "Другое")
             {
                 otherTypeDoc.Visible = false;
             }
@@ -96,6 +123,38 @@ namespace TestTaskWinForm
             {
                 otherTypeDoc.Visible= true;
             }
+        }
+
+        private void btnStatusRequestDoc_Click(object sender, EventArgs e)
+        {
+            ExNullInName();
+            list = FileBase.LisenFiles(baseDir, fileName);
+            if (FullNameValidation.IsValid(textFullName.Text))
+            {
+                List<string> dataSend = new List<string>();
+                StringBuilder sb = new StringBuilder();
+                string data = "";
+
+                foreach (string item in list)
+                {
+                    if (item.Contains(textFullName.Text))
+                    {
+                        dataSend.Add(item);
+                    }
+                }
+
+                foreach (string item in dataSend)
+                {
+                    sb.AppendLine(item.Replace(";"," "));
+                }
+                data = sb.ToString();
+
+                using (var popup = new DataPopupForm(data))
+                {
+                    popup.ShowDialog(this);
+                }
+            }
+                
         }
     }
 }

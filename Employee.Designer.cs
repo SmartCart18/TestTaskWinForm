@@ -33,15 +33,23 @@
             this.textFullName = new System.Windows.Forms.TextBox();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.label1 = new System.Windows.Forms.Label();
-            this.TypeDocument = new System.Windows.Forms.ComboBox();
+            this.textTypeDocument = new System.Windows.Forms.ComboBox();
             this.otherTypeDoc = new System.Windows.Forms.TextBox();
             this.QuantityDocument = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textReasonRequest = new System.Windows.Forms.TextBox();
+            this.btnStatusRequestDoc = new System.Windows.Forms.Button();
+            this.errorTypeDocument = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorReasonRequest = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorOtherTypeDoc = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityDocument)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTypeDocument)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorReasonRequest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorOtherTypeDoc)).BeginInit();
             this.SuspendLayout();
             // 
             // btnRequestDoc
@@ -74,19 +82,20 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "ФИО";
             // 
-            // TypeDocument
+            // textTypeDocument
             // 
-            this.TypeDocument.FormattingEnabled = true;
-            this.TypeDocument.Items.AddRange(new object[] {
+            this.textTypeDocument.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.textTypeDocument.FormattingEnabled = true;
+            this.textTypeDocument.Items.AddRange(new object[] {
             "2-НДФЛ",
             "Справка о месте работы и стаж",
             "Справка о среднем заработке",
             "Другое"});
-            this.TypeDocument.Location = new System.Drawing.Point(40, 130);
-            this.TypeDocument.Name = "TypeDocument";
-            this.TypeDocument.Size = new System.Drawing.Size(288, 21);
-            this.TypeDocument.TabIndex = 3;
-            this.TypeDocument.SelectedIndexChanged += new System.EventHandler(this.TypeDocument_SelectedIndexChanged);
+            this.textTypeDocument.Location = new System.Drawing.Point(40, 130);
+            this.textTypeDocument.Name = "textTypeDocument";
+            this.textTypeDocument.Size = new System.Drawing.Size(288, 21);
+            this.textTypeDocument.TabIndex = 3;
+            this.textTypeDocument.SelectedIndexChanged += new System.EventHandler(this.TypeDocument_SelectedIndexChanged);
             // 
             // otherTypeDoc
             // 
@@ -153,18 +162,51 @@
             this.textReasonRequest.Size = new System.Drawing.Size(288, 67);
             this.textReasonRequest.TabIndex = 9;
             // 
+            // btnStatusRequestDoc
+            // 
+            this.btnStatusRequestDoc.Location = new System.Drawing.Point(408, 350);
+            this.btnStatusRequestDoc.Name = "btnStatusRequestDoc";
+            this.btnStatusRequestDoc.Size = new System.Drawing.Size(176, 47);
+            this.btnStatusRequestDoc.TabIndex = 10;
+            this.btnStatusRequestDoc.Text = "Просмотреть справки";
+            this.btnStatusRequestDoc.UseVisualStyleBackColor = true;
+            this.btnStatusRequestDoc.Click += new System.EventHandler(this.btnStatusRequestDoc_Click);
+            // 
+            // errorTypeDocument
+            // 
+            this.errorTypeDocument.ContainerControl = this;
+            // 
+            // errorReasonRequest
+            // 
+            this.errorReasonRequest.ContainerControl = this;
+            // 
+            // errorOtherTypeDoc
+            // 
+            this.errorOtherTypeDoc.ContainerControl = this;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(378, 320);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(244, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Для просмотра справки заполните поле ФИО";
+            // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 458);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.btnStatusRequestDoc);
             this.Controls.Add(this.textReasonRequest);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.QuantityDocument);
             this.Controls.Add(this.otherTypeDoc);
-            this.Controls.Add(this.TypeDocument);
+            this.Controls.Add(this.textTypeDocument);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textFullName);
             this.Controls.Add(this.btnRequestDoc);
@@ -173,6 +215,9 @@
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityDocument)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorTypeDocument)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorReasonRequest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorOtherTypeDoc)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -184,12 +229,17 @@
         private System.Windows.Forms.TextBox textFullName;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox TypeDocument;
+        private System.Windows.Forms.ComboBox textTypeDocument;
         private System.Windows.Forms.TextBox otherTypeDoc;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown QuantityDocument;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textReasonRequest;
+        private System.Windows.Forms.Button btnStatusRequestDoc;
+        private System.Windows.Forms.ErrorProvider errorTypeDocument;
+        private System.Windows.Forms.ErrorProvider errorReasonRequest;
+        private System.Windows.Forms.ErrorProvider errorOtherTypeDoc;
+        private System.Windows.Forms.Label label5;
     }
 }

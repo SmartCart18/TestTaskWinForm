@@ -80,7 +80,6 @@
             this.Name = "UserIdentification";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "TestTask";
-            this.Load += new System.EventHandler(this.UserIdentification_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

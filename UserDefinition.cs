@@ -17,47 +17,11 @@ namespace TestTaskWinForm
 
         public UserIdentification()
         {
-            var UserDateInfo = new Document();
-            InitializeComponent();
-
-        }
-
-        private void UserIdentification_Load(object sender, EventArgs e)
-        {
             string baseDir = AppContext.BaseDirectory;
             string fileName = "employeeDocument.txt";
-
-            try
-            {
-                // Ищет точное совпадение
-                string foundFile = Directory.EnumerateFiles(baseDir, fileName, SearchOption.AllDirectories)
-                                            .FirstOrDefault();
-
-                if (foundFile != null)
-                {
-                    /*Console.WriteLine($"Файл найден: {foundFile}");*/
-                    try
-                    {
-                        string[] lines = File.ReadAllLines(baseDir + "\\employeeDocument.txt");
-                        /* Console.WriteLine($"Прочитано строк: {lines.Length}");
-                         foreach (var line in lines) Console.WriteLine(line); */
-                    }
-                    catch (Exception ex)
-                    {
-                        Console.WriteLine("Ошибка чтения файла: " + ex.Message);
-                    }
-                }
-                else
-                {
-                    /*Console.WriteLine("Файл не найден.");*/
-                    File.WriteAllText(baseDir + "\\employeeDocument.txt", "");
-                }
-            }
-            catch (UnauthorizedAccessException)
-            {
-                /*Console.WriteLine("Нет доступа к некоторым папкам.");*/
-            }
-
+            if(!FileBase.SearchFiles(baseDir, fileName))
+                FileBase.CreateFiles(baseDir, fileName);
+            InitializeComponent();
 
         }
         private void btnOpenEmployeeForm(object sender, EventArgs e)
@@ -79,6 +43,7 @@ namespace TestTaskWinForm
                 this.Show();
             };
             f.Show();
+
         }
 
         private void OpenAccountantForm()
@@ -91,6 +56,7 @@ namespace TestTaskWinForm
 
             };
             f.Show();
+
         }
 
     }
