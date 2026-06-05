@@ -58,6 +58,10 @@ namespace TestTaskWinForm
                     textReasonRequest.Text = "";
                     textTypeDocument.SelectedIndex = -1;
                 }
+                else
+                {
+                    MessageBox.Show("Такая справка уже отправленна.","Ошибка!");
+                }
             }
         }
 
