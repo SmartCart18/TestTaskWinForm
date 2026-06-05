@@ -31,6 +31,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCloseTestTask = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -64,12 +65,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panel1.Controls.Add(this.btnCloseTestTask);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Location = new System.Drawing.Point(17, 17);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(515, 324);
             this.panel1.TabIndex = 2;
+            // 
+            // btnCloseTestTask
+            // 
+            this.btnCloseTestTask.Location = new System.Drawing.Point(172, 213);
+            this.btnCloseTestTask.Name = "btnCloseTestTask";
+            this.btnCloseTestTask.Size = new System.Drawing.Size(165, 81);
+            this.btnCloseTestTask.TabIndex = 2;
+            this.btnCloseTestTask.Text = "Закрыть приложение";
+            this.btnCloseTestTask.UseVisualStyleBackColor = true;
+            this.btnCloseTestTask.Click += new System.EventHandler(this.btnCloseTestTask_Click);
             // 
             // UserIdentification
             // 
@@ -79,6 +91,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "UserIdentification";
             this.Padding = new System.Windows.Forms.Padding(5);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TestTask";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -91,6 +104,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnCloseTestTask;
     }
 }
 

@@ -61,9 +61,15 @@ namespace TestTaskWinForm
             }
         }
 
-        public static void WritingToFile(string baseDir, string fileName, string textToAppend)
+        public static void AppendlTextToFile(string baseDir, string fileName, string textToAppend)//Запись в файл
         {
             File.AppendAllText(baseDir + "\\" + fileName, textToAppend);
+        }
+
+        
+        public static void WriteTextToFile(string baseDir, string fileName, string[] textToAppend)//Запись в файл
+        {
+            File.WriteAllLines(baseDir + "\\" + fileName, textToAppend);
         }
     }
 }

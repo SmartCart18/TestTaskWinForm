@@ -50,7 +50,7 @@ namespace TestTaskWinForm
 
                 if (!list.Any(w => w.Contains(userDocument.ForСompareDocument())))
                 {
-                    FileBase.WritingToFile(baseDir, fileName, userDocument.GetDocument());     // запись в документ
+                    FileBase.AppendlTextToFile(baseDir, fileName, userDocument.GetDocument());     // запись в документ
                     list = FileBase.LisenFiles(baseDir, fileName);
                     MessageBox.Show("Данные успешно отправлены!", "Успех");
                     otherTypeDoc.Text = "";
@@ -63,9 +63,7 @@ namespace TestTaskWinForm
 
         private void ExNullInName() // проверка на пустое поле ФИО
         {
-            string fullName = textFullName.Text;
-
-            if (!FullNameValidation.IsValid(fullName))
+            if (!FullNameValidation.IsValid(textFullName.Text))
             {
                 errorProvider.SetError(textFullName, "Введите ФИО: Фамилия Имя [Отчество], 2–3 части, только буквы и дефисы/апострофы.");
                 textFullName.Focus();
@@ -76,8 +74,6 @@ namespace TestTaskWinForm
         }
         private void ExNullInTypeDoc()
         {
-            string fullName = textTypeDocument.Text;
-
             if (textTypeDocument.Text =="")
             {
                 errorTypeDocument.SetError(textTypeDocument, "Выберите вид справки.");
@@ -88,8 +84,6 @@ namespace TestTaskWinForm
         }
         private void ExNullInReasonRec()
         {
-            string fullName = textReasonRequest.Text;
-
             if (textReasonRequest.Text == "")
             {
                 errorReasonRequest.SetError(textReasonRequest, "Укажите причину запроса.");
@@ -101,8 +95,6 @@ namespace TestTaskWinForm
 
         private void ExNullInOtherReasonRec()
         {
-            string fullName = otherTypeDoc.Text;
-
             if (otherTypeDoc.Text == "")
             {
                 errorOtherTypeDoc.SetError(otherTypeDoc, "Укажите другую причину запроса.");
@@ -143,18 +135,32 @@ namespace TestTaskWinForm
                     }
                 }
 
-                foreach (string item in dataSend)
+                if (dataSend.Count != 0)
                 {
-                    sb.AppendLine(item.Replace(";"," "));
-                }
-                data = sb.ToString();
+                    foreach (string item in dataSend)
+                    {
+                        sb.AppendLine(item.Replace(";", " "));
+                    }
+                    data = sb.ToString();
 
-                using (var popup = new DataPopupForm(data))
-                {
-                    popup.ShowDialog(this);
+                    using (var popup = new DataPopupForm(data))
+                    {
+                        popup.ShowDialog(this);
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("На данного пользователя справок необнаружино!", "Ошибка");
+                }
+                
             }
                 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+           
         }
     }
 }

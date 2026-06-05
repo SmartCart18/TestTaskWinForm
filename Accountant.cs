@@ -15,6 +15,7 @@ namespace TestTaskWinForm
         string baseDir = AppContext.BaseDirectory;
         string fileName = "employeeDocument.txt";
         Document userDocument = new Document();
+        List<string> list = new List<string>();
         public Accountant()
         {
             InitializeComponent();
@@ -23,20 +24,28 @@ namespace TestTaskWinForm
 
         private void Accountant_Load(object sender, EventArgs e)
         {
-            List<string> list = FileBase.LisenFiles(baseDir, fileName);
+            list = FileBase.LisenFiles(baseDir, fileName);
             textAllEmployee.Text = TextAllEmp();
             ComboBoxFillingEmp();
         }
 
         private void btnApplyChange_Click(object sender, EventArgs e)
         {
-            
+            ExNullInComboTypeDoc();
+            ExNullInComboEnterEmployee();
+            if (comboEnterEmployee.Text != "" & comboStatusDoc.Text != "")
+            {
+                userDocument.SetDocument(list[comboEnterEmployee.SelectedIndex], ';');  //запись в переменную класса Document выбранную справку
+                userDocument.StatusDocument = comboStatusDoc.Text;                      //замена статуса в переменной
+                list[comboEnterEmployee.SelectedIndex] = userDocument.GetDocument();    //изменение справки в массиве справок
+                FileBase.WriteTextToFile(baseDir, fileName, list.ToArray());              //запись изменённого массива в файл
+            }
+            textAllEmployee.Text = TextAllEmp();
+            ComboBoxFillingEmp();
         }
 
         private string TextAllEmp()
         {
-            List<string> list = FileBase.LisenFiles(baseDir, fileName);
-            list = FileBase.LisenFiles(baseDir, fileName);
             StringBuilder sb = new StringBuilder();
             foreach (string item in list)
             {
@@ -44,11 +53,39 @@ namespace TestTaskWinForm
             }
             return sb.ToString();
         }
+
         private void ComboBoxFillingEmp()
         {
-            List<string> list = FileBase.LisenFiles(baseDir, fileName);
+            comboEnterEmployee.Items.Clear();
             foreach (string item in list)
-                comboEnterEmployee.Items.Add(item.Replace(";", " "));
+                comboEnterEmployee.Items.Add(item);
+        }
+
+        private void btnCloseAcc_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ExNullInComboTypeDoc()
+        {
+            if (comboStatusDoc.Text == "")
+            {
+                errorComboStatusDoc.SetError(comboStatusDoc, "Выберите статус справки.");
+                comboStatusDoc.Focus();
+                return;
+            }
+            errorComboStatusDoc.SetError(comboStatusDoc, "");
+        }
+
+        private void ExNullInComboEnterEmployee()
+        {
+            if (comboEnterEmployee.Text == "")
+            {
+                errorComboEmployee.SetError(comboEnterEmployee, "Выберите справку для изменения статуса.");
+                comboEnterEmployee.Focus();
+                return;
+            }
+            errorComboEmployee.SetError(comboEnterEmployee, "");
         }
     }
 }

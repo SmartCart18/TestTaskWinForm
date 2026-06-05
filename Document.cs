@@ -28,7 +28,7 @@ namespace TestTaskWinForm
         }
         public string GetDocument()
         {
-            string textToAppend = UserName + ";" + TypeDocument + ";" + Quantity + ";" + ReasonRequest + ";" + StatusDocument + Environment.NewLine;
+            string textToAppend = UserName + ";" + TypeDocument + ";" + Quantity + ";" + ReasonRequest + ";" + StatusDocument;
             return textToAppend;
         }
         public void SetDocument(string userName, string typeDocument, int quantity, string reasonRequest, string statusDocument)
@@ -45,6 +45,16 @@ namespace TestTaskWinForm
             return textToСompare;
         }
 
-       
+        public void SetDocument(string list, char separator)
+        {
+            string[] docString = list.Split(separator);
+            UserName = docString[0];
+            TypeDocument = docString[1];
+            int.TryParse(docString[2], out int quantity);
+            Quantity = quantity;
+            ReasonRequest = docString[3];
+            StatusDocument = docString[4];
+        }
+
     }
 }

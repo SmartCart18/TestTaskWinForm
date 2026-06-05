@@ -34,7 +34,7 @@
             // lblMessage
             // 
             this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(12, 9);
+            this.lblMessage.Location = new System.Drawing.Point(22, 19);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(35, 13);
             this.lblMessage.TabIndex = 0;
@@ -44,9 +44,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(474, 618);
             this.Controls.Add(this.lblMessage);
             this.Name = "DataPopupForm";
+            this.Padding = new System.Windows.Forms.Padding(10);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DataPopupForm";
             this.ResumeLayout(false);
             this.PerformLayout();

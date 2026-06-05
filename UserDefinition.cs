@@ -59,5 +59,9 @@ namespace TestTaskWinForm
 
         }
 
+        private void btnCloseTestTask_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

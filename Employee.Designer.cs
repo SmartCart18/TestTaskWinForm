@@ -45,6 +45,7 @@
             this.errorReasonRequest = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorOtherTypeDoc = new System.Windows.Forms.ErrorProvider(this.components);
             this.label5 = new System.Windows.Forms.Label();
+            this.btnCloseEmp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuantityDocument)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorTypeDocument)).BeginInit();
@@ -164,7 +165,7 @@
             // 
             // btnStatusRequestDoc
             // 
-            this.btnStatusRequestDoc.Location = new System.Drawing.Point(408, 350);
+            this.btnStatusRequestDoc.Location = new System.Drawing.Point(446, 350);
             this.btnStatusRequestDoc.Name = "btnStatusRequestDoc";
             this.btnStatusRequestDoc.Size = new System.Drawing.Size(176, 47);
             this.btnStatusRequestDoc.TabIndex = 10;
@@ -187,17 +188,28 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(378, 320);
+            this.label5.Location = new System.Drawing.Point(415, 320);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(244, 13);
             this.label5.TabIndex = 11;
             this.label5.Text = "Для просмотра справки заполните поле ФИО";
+            // 
+            // btnCloseEmp
+            // 
+            this.btnCloseEmp.Location = new System.Drawing.Point(288, 410);
+            this.btnCloseEmp.Name = "btnCloseEmp";
+            this.btnCloseEmp.Size = new System.Drawing.Size(102, 23);
+            this.btnCloseEmp.TabIndex = 12;
+            this.btnCloseEmp.Text = "Назад";
+            this.btnCloseEmp.UseVisualStyleBackColor = true;
+            this.btnCloseEmp.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // Employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(681, 458);
+            this.Controls.Add(this.btnCloseEmp);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnStatusRequestDoc);
             this.Controls.Add(this.textReasonRequest);
@@ -211,6 +223,7 @@
             this.Controls.Add(this.textFullName);
             this.Controls.Add(this.btnRequestDoc);
             this.Name = "Employee";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Сотрудник";
             this.Load += new System.EventHandler(this.Employee_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -241,5 +254,6 @@
         private System.Windows.Forms.ErrorProvider errorReasonRequest;
         private System.Windows.Forms.ErrorProvider errorOtherTypeDoc;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCloseEmp;
     }
 }
