@@ -55,10 +55,11 @@
             this.textAllEmployee.Multiline = true;
             this.textAllEmployee.Name = "textAllEmployee";
             this.textAllEmployee.ReadOnly = true;
+            this.textAllEmployee.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textAllEmployee.Size = new System.Drawing.Size(621, 398);
             this.textAllEmployee.TabIndex = 1;
             // 
-            // comboTypeDoc
+            // comboStatusDoc
             // 
             this.comboStatusDoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboStatusDoc.FormattingEnabled = true;
@@ -98,7 +99,7 @@
             // 
             this.errorComboEmployee.ContainerControl = this;
             // 
-            // errorComboTypeDoc
+            // errorComboStatusDoc
             // 
             this.errorComboStatusDoc.ContainerControl = this;
             // 
