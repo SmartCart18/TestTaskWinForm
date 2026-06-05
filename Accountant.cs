@@ -36,12 +36,21 @@ namespace TestTaskWinForm
             if (comboEnterEmployee.Text != "" & comboStatusDoc.Text != "")
             {
                 userDocument.SetDocument(list[comboEnterEmployee.SelectedIndex], ';');  //запись в переменную класса Document выбранную справку
-                userDocument.StatusDocument = comboStatusDoc.Text;                      //замена статуса в переменной
-                list[comboEnterEmployee.SelectedIndex] = userDocument.GetDocument();    //изменение справки в массиве справок
-                FileBase.WriteTextToFile(baseDir, fileName, list.ToArray());              //запись изменённого массива в файл
+                if (userDocument.StatusDocument == comboStatusDoc.Text)
+                {
+                    MessageBox.Show("Статусы совподают, измените поле статуса на верное.","Ошибка!");
+                }
+                else
+                {
+                    userDocument.StatusDocument = comboStatusDoc.Text;                      //замена статуса в переменной
+                    list[comboEnterEmployee.SelectedIndex] = userDocument.GetDocument();    //изменение справки в массиве справок
+                    FileBase.WriteTextToFile(baseDir, fileName, list.ToArray());              //запись изменённого массива в файл
+                    MessageBox.Show("Статус изменён.", "Успешно"); 
+                    textAllEmployee.Text = TextAllEmp();
+                    ComboBoxFillingEmp();
+                }
             }
-            textAllEmployee.Text = TextAllEmp();
-            ComboBoxFillingEmp();
+
         }
 
         private string TextAllEmp()
