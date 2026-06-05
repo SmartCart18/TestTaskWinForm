@@ -28,9 +28,17 @@ namespace TestTaskWinForm
         }
         public string GetDocument()
         {
+            string textToAppend = UserName + ";" + TypeDocument + ";" + Quantity + ";" + ReasonRequest + ";" + StatusDocument + Environment.NewLine;
+            return textToAppend;
+        }
+
+        public string GetDocumentText()
+        {
             string textToAppend = UserName + ";" + TypeDocument + ";" + Quantity + ";" + ReasonRequest + ";" + StatusDocument;
             return textToAppend;
         }
+
+
         public void SetDocument(string userName, string typeDocument, int quantity, string reasonRequest, string statusDocument)
         {
             UserName = userName;

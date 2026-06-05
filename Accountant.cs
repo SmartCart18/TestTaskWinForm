@@ -42,9 +42,9 @@ namespace TestTaskWinForm
                 }
                 else
                 {
-                    userDocument.StatusDocument = comboStatusDoc.Text;                      //замена статуса в переменной
-                    list[comboEnterEmployee.SelectedIndex] = userDocument.GetDocument();    //изменение справки в массиве справок
-                    FileBase.WriteTextToFile(baseDir, fileName, list.ToArray());              //запись изменённого массива в файл
+                    userDocument.StatusDocument = comboStatusDoc.Text;                          //замена статуса в переменной
+                    list[comboEnterEmployee.SelectedIndex] = userDocument.GetDocumentText();    //изменение справки в массиве справок
+                    FileBase.WriteTextToFile(baseDir, fileName, list.ToArray());                //запись изменённого массива в файл
                     MessageBox.Show("Статус изменён.", "Успешно"); 
                     textAllEmployee.Text = TextAllEmp();
                     ComboBoxFillingEmp();

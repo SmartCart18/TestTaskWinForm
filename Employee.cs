@@ -50,7 +50,7 @@ namespace TestTaskWinForm
 
                 if (!list.Any(w => w.Contains(userDocument.ForСompareDocument())))
                 {
-                    FileBase.AppendlTextToFile(baseDir, fileName, userDocument.GetDocument() + "\n");     // запись в документ
+                    FileBase.AppendlTextToFile(baseDir, fileName, userDocument.GetDocument() );     // запись в документ
                     list = FileBase.LisenFiles(baseDir, fileName);
                     MessageBox.Show("Данные успешно отправлены!", "Успех");
                     otherTypeDoc.Text = "";
